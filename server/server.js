@@ -124,7 +124,10 @@ app.get('/logout', userController.logout);
 
 
 // Forgot Password
-app.get('/forgotpw', userController.forgotpw);
+app.post('/forgotpw', userController.forgotpw);
+
+// Forgot Password
+app.post('/updatepw', userController.updatepw);
 
 // Create User
 app.post('/createuser', userController.addUser);
