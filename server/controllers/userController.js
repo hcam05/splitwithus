@@ -9,7 +9,6 @@ const userController = {
 
     db.connect()
       .then(obj => {
-        // db.query(`INSERT INTO "Users" ("username", "password", "first_name", "last_name", "email") VALUES ('${req.body.username}','${req.body.password}','${req.body.first_name}','${req.body.last_name}','${req.body.email}');`)
         db.query(addUser)
           .then((resp) => {
             console.log('user created')
@@ -48,14 +47,13 @@ const userController = {
     //connect to data base
     db.connect()
       .then(obj => {
-        db.query(`SELECT EXISTS (SELECT * FROM "Users" WHERE "username" = '${user}' AND "password" = '${pw}')`)
+        db.query(`SELECT * FROM "Users" WHERE "username" = '${user}' AND "password" = '${pw}'`)
           .then((resp) => {
             console.log(resp);
-            if (resp){
-              res.send(resp)
+            if (resp[0].username){
+              res.redirect('/');
             } else {
-              res.send('error')
-              // res.redirect('/login');
+              res.redirect('/login');
             }
           })
           .catch((err) => {

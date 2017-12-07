@@ -12,7 +12,6 @@ const passport = require('passport');
 const GithubStrategy = require('passport-github').Strategy;
 const session = require('express-session');
 
-
 const port = 8080;
 /***************************
  * Static files middleware 
@@ -120,7 +119,7 @@ app.get('/users', userController.allUsers);
 app.get('/services', serviceController.allServices);
 
 // Login/Logout Routes
-app.post('/login', userController.login, );
+app.post('/login', userController.login);
 app.get('/logout', userController.logout);
 
 
@@ -153,8 +152,5 @@ app.get('/*', (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
-
-
-
 
 module.exports = app;
